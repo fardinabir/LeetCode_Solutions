@@ -6,11 +6,8 @@ public:
             for(int j=0; j<9; j++){
                 if(board[i][j]!='.'){
                     int val = board[i][j];
-                    if(row[i][val] || col[j][val] || box[(i/3)*3+j/3][val]){
-                        cout<<(i/3)*3+j/3<<" "<< box[(i/3)*3+j/3][val]<<endl;
-                        cout<<i<<" -- "<<j<<endl;
+                    if(row[i][val] || col[j][val] || box[(i/3)*3 + j/3][val])
                         return false;
-                    }
                     row[i][val] = col[j][val] = box[(i/3)*3 + j/3][val] = true;
                 }
             }
