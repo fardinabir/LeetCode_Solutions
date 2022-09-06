@@ -2,9 +2,8 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        ListNode *hare, *tort;
-        hare = tort = head;
-        while(hare && hare->next && tort){
+        ListNode *hare = head, *tort = head;
+        while(hare && hare->next){
             hare = hare->next->next;
             tort = tort->next;
             if(hare == tort)
