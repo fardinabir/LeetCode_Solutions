@@ -10,8 +10,6 @@ public:
     }
     
     int pop() {
-        while(!aux.empty())
-            aux.pop();
         while(!main.empty()){
             aux.push(main.top());
             main.pop();
@@ -25,8 +23,6 @@ public:
         return top;
     }
     int peek() {
-        while(!aux.empty())
-            aux.pop();
         while(!main.empty()){
             aux.push(main.top());
             main.pop();
