@@ -6,24 +6,20 @@ public:
         
     }
     void push(int x) {
+        int sz = main.size();
         main.push(x);
-        last = x;
-    }
-    int pop() {
-        while(main.size()>1){
-            aux.push(main.front());
+        while(sz--){
+            main.push(main.front());
             main.pop();
         }
+    }
+    int pop() {
         int tmp = main.front();
         main.pop();
-        while(!aux.empty()){
-            push(aux.front());
-            aux.pop();
-        }
         return tmp;
     }
     int top() {
-        return last;
+        return main.front();
     }
     
     bool empty() {
