@@ -1,7 +1,6 @@
 class MyStack {
 public:
-    queue <int> main, aux;
-    int last;
+    queue <int> main;
     MyStack() {
         
     }
@@ -21,7 +20,6 @@ public:
     int top() {
         return main.front();
     }
-    
     bool empty() {
         return main.empty();
     }
