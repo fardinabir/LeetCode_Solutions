@@ -13,9 +13,9 @@ public:
                 TreeNode *temp = tq.front();
                 tq.pop();
                 add.push_back(temp->val);
-                if(temp->left!=NULL)
+                if(temp->left)
                     tq.push(temp->left);
-                if(temp->right!=NULL)
+                if(temp->right)
                     tq.push(temp->right);
             }
             vc.push_back(add);
