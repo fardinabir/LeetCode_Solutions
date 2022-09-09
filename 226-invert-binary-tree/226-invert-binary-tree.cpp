@@ -2,14 +2,11 @@
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        invert(root);
+        if(!root)
+            return root;
+        invertTree(root->left);
+        invertTree(root->right);
+        swap(root->left,root->right);
         return root;
-    }
-    void invert(TreeNode* node){
-        if(!node)
-            return;
-        invert(node->left);
-        invert(node->right);
-        swap(node->left,node->right);
     }
 };
