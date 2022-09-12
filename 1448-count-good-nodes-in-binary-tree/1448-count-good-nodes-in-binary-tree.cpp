@@ -6,8 +6,6 @@ public:
     int findRes(TreeNode *node, int mx){
         if(!node) return 0;
         int downRes = findRes(node->left, max(mx,node->val)) + findRes(node->right, max(mx,node->val));
-        if(mx <= node->val)
-            return downRes+1;
-        return downRes;
+        return downRes + (mx <= node->val);
     }
 };
