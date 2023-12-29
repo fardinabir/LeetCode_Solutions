@@ -1,41 +1,22 @@
-var mem [31][1001]int
+const mod = 1000000007
 
-const mod=1000000007
+func numRollsToTarget(n, k, target int) int {
+    dp := make([][]int, n+1)
+    for i := range dp {
+        dp[i] = make([]int, target+1)
+    }
 
-func numRollsToTarget(n int, k int, target int) int {
-    memset2D(&mem, -1)
-    return calPossibleWays(n, k, target)
-}
+    dp[0][0] = 1
 
-func memset2D(arr *[31][1001]int, value int) {
-	for i := range arr {
-		for j := range arr[i] {
-			arr[i][j] = value
-		}
-	}
-}
-
-func calPossibleWays(n, k, target int) int {
-    if n == 0 {
-        if target == 0 {
-            return 1
+    for i := 1; i <= n; i++ {
+        for j := 1; j <= target; j++ {
+            for t := 1; t <= k; t++ {
+                if j-t >= 0 {
+                    dp[i][j] = (dp[i][j] + dp[i-1][j-t]) % mod
+                }
+            }
         }
-        return 0
     }
-    if target <= 0 {
-        return 0
-    }
-    
-    if mem[n][target] != -1 {
-        return mem[n][target]
-    }
-    
-    var ways int
-    for i := 1; i <= k; i++ {
-        // fmt.Println("calling : ", n-1, "---", target - i)
-        ways = (ways + (calPossibleWays(n-1, k, target - i) % mod)) % mod
-        // fmt.Println(ways)
-    }
-    mem[n][target] = ways % mod
-    return ways
+
+    return dp[n][target]
 }
