@@ -8,10 +8,7 @@ func minOperations(nums []int) int {
         if value < 2 {
             return -1
         }
-        cnt += value/3
-        if value%3 != 0 {
-            cnt++
-        }
+        cnt += (value-1)/3 + 1
     }
     return cnt
 }
