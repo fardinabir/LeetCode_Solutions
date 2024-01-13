@@ -1,28 +1,14 @@
-func minSteps(s string, t string) int {
-    mps := make(map[rune]int)
-    mpt := make(map[rune]int)
-    
-    for i:= 0; i<len(s); i++ {
-        mps[rune(s[i])]++
-        mpt[rune(t[i])]++
+func minSteps(s string, t string) (res int) {
+    mapChar := [26]int{}
+    for k , v := range s {
+        mapChar[v - 'a']++
+        mapChar[t[k] - 'a']--
     }
-    
-    var cnt int
-    for key, val := range mpt {
-        if val2,ok := mps[key]; ok {
-            cnt += min(val, val2)
+
+    for _ , v := range mapChar {
+        if v > 0 { 
+            res += v
         }
     }
-    return len(s) - cnt
-}
-
-func AbsInt(x int) int {
-	return int(math.Abs(float64(x)))
-}
-
-func min(a, b int) int {
-    if a < b {
-        return a
-    }
-    return b
+    return res
 }
