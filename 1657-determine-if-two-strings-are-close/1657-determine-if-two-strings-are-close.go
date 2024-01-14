@@ -1,32 +1,34 @@
-
 func closeStrings(word1 string, word2 string) bool {
-    mpWord1 := make(map[byte]int)
-    mpWord2 := make(map[byte]int)
     if len(word1) != len(word2) {
         return false
     }
-    for i:=0; i<len(word1); i++ {
-        mpWord1[word1[i]]++
-        mpWord2[word2[i]]++
-    }
-    mpArr1 := []int{}
-    mpArr2 := []int{}
-    for key, val := range mpWord1 {
-        var val2 int
-        var ok bool
-        if val2, ok = mpWord2[key]; !ok {
+    
+    f1 := getFreq(word1)
+    f2 := getFreq(word2)
+
+    for i := 0; i < 26; i++ {
+        if f1[i] * f2[i] == 0 && f1[i] + f2[i] > 0{
             return false
         }
-        mpArr1 = append(mpArr1, val)
-        mpArr2 = append(mpArr2, val2)
     }
     
-    slices.Sort(mpArr1)
-    slices.Sort(mpArr2)
+    slices.Sort(f1)
+    slices.Sort(f2)
     
-    if slices.Equal(mpArr1, mpArr2) {
+    if slices.Equal(f1, f2) {
         return true
     }
+    
     return false
+    
+}
+
+func getFreq(word string) []int {
+    f := make([]int, 26)
+    for _, c := range word {
+        f[c - 'a']++
+    }
+    
+    return f
 }
 
