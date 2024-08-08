@@ -8,10 +8,7 @@ public:
                 if(l == i){
                     vc.push_back(to_string(nums[i]));
                 } else {
-                    string st, r;
-                    st = to_string(nums[l]);
-                    r = to_string(nums[i]);
-                    vc.push_back(st+"->"+r);
+                    vc.push_back(to_string(nums[l])+"->"+to_string(nums[i]));
                 }
                 l = i+1;
             }       
