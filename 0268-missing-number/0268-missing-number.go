@@ -1,8 +1,13 @@
 func missingNumber(nums []int) int {
-    var sum int
-    n := len(nums)
-    for _, v := range nums {
-        sum = sum + v
+    for i := range nums {
+        for nums[i] > 0 && nums[i] <= i && nums[nums[i]-1] != nums[i] {
+            nums[i], nums[nums[i]-1] = nums[nums[i]-1], nums[i]
+        }
     }
-    return ((n+1)*n)/2 - sum
+    for i, v := range nums {
+        if v != i+1 {
+            return i+1
+        }
+    }
+    return 0
 }
